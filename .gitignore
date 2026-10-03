@@ -3,3 +3,32 @@ dist
 .DS_Store
 .claude/settings.local.json
 screenshot-desktop.png
+
+# --- added by gitignore-generator ---
+
+# Secrets (keep the example template)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS / editors
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node / Vite / TypeScript
+*.tsbuildinfo
+.vite/
+coverage/
+.eslintcache
