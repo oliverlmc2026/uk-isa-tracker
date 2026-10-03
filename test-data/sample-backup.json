@@ -1,0 +1,128 @@
+{
+  "app": "uk-isa-tracker",
+  "schemaVersion": 1,
+  "exportedAt": "2026-10-02T12:00:00.000Z",
+  "data": {
+    "accounts": [
+      {
+        "id": "acc-marcus",
+        "name": "Marcus Easy Access",
+        "type": "cash",
+        "provider": "Marcus"
+      },
+      {
+        "id": "acc-vanguard",
+        "name": "Vanguard S&S ISA",
+        "type": "stocks_and_shares",
+        "provider": "Vanguard"
+      },
+      {
+        "id": "acc-t212",
+        "name": "Trading 212 ISA",
+        "type": "stocks_and_shares",
+        "provider": "Trading 212"
+      },
+      {
+        "id": "acc-moneybox",
+        "name": "Moneybox LISA",
+        "type": "lifetime",
+        "provider": "Moneybox"
+      }
+    ],
+    "contributions": [
+      {
+        "id": "c-01",
+        "accountId": "acc-marcus",
+        "amount": 400000,
+        "date": "2024-06-12"
+      },
+      {
+        "id": "c-02",
+        "accountId": "acc-vanguard",
+        "amount": 200000,
+        "date": "2024-11-03"
+      },
+      {
+        "id": "c-03",
+        "accountId": "acc-marcus",
+        "amount": 100000,
+        "date": "2025-04-05"
+      },
+      {
+        "id": "c-04",
+        "accountId": "acc-moneybox",
+        "amount": 200000,
+        "date": "2025-05-01"
+      },
+      {
+        "id": "c-05",
+        "accountId": "acc-marcus",
+        "amount": 800000,
+        "date": "2025-06-20"
+      },
+      {
+        "id": "c-06",
+        "accountId": "acc-vanguard",
+        "amount": 600000,
+        "date": "2025-10-15"
+      },
+      {
+        "id": "c-07",
+        "accountId": "acc-moneybox",
+        "amount": 250000,
+        "date": "2026-04-05"
+      },
+      {
+        "id": "c-08",
+        "accountId": "acc-t212",
+        "amount": 200000,
+        "date": "2026-03-10"
+      },
+      {
+        "id": "c-09",
+        "accountId": "acc-moneybox",
+        "amount": 100000,
+        "date": "2026-04-06"
+      },
+      {
+        "id": "c-10",
+        "accountId": "acc-marcus",
+        "amount": 500000,
+        "date": "2026-05-15"
+      },
+      {
+        "id": "c-11",
+        "accountId": "acc-vanguard",
+        "amount": 300000,
+        "date": "2026-06-10"
+      },
+      {
+        "id": "c-12",
+        "accountId": "acc-moneybox",
+        "amount": 150000,
+        "date": "2026-07-01"
+      },
+      {
+        "id": "c-13",
+        "accountId": "acc-marcus",
+        "amount": 300000,
+        "date": "2026-08-20"
+      },
+      {
+        "id": "c-14",
+        "accountId": "acc-moneybox",
+        "amount": 150000,
+        "date": "2026-09-01"
+      },
+      {
+        "id": "c-15",
+        "accountId": "acc-t212",
+        "amount": 300000,
+        "date": "2026-09-15"
+      }
+    ],
+    "settings": {
+      "warningThreshold": 90
+    }
+  }
+}
