@@ -2,7 +2,7 @@
 
 追蹤英國 ISA 供款，確保唔會超出每個稅務年度嘅免稅額。
 
-🌐 線上版：https://oliverlmc2026.github.io/uk-isa-tracker/
+🌐 線上版：https://uk-isa-tracker.benlmc20133.workers.dev
 
 英國 ISA 持有人每個 Tax Year（4 月 6 日至翌年 4 月 5 日）有 £20,000 ISA Allowance，所有 ISA 類型共用；Lifetime ISA (LISA) 另有 £4,000 年度上限，但供款同樣計入 ISA Allowance。呢個 App 幫你記錄每筆供款，隨時睇到用咗幾多、仲剩幾多。
 
