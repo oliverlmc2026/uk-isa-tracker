@@ -1,8 +1,28 @@
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      // public/manifest.webmanifest is hand-written and already linked from index.html.
+      manifest: false,
+      includeAssets: ['*.png', '*.svg'],
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,png,svg,webmanifest}'],
+        runtimeCaching: [
+          {
+            // Google Fonts: cache so the app keeps its typography offline.
+            urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/,
+            handler: 'StaleWhileRevalidate',
+            options: { cacheName: 'google-fonts' },
+          },
+        ],
+      },
+    }),
+  ],
   // Defaults to the GitHub Pages sub-path (https://<user>.github.io/uk-isa-tracker/).
   // Cloudflare serves from the domain root, so its build sets BASE_PATH=/.
   base: process.env.BASE_PATH ?? '/uk-isa-tracker/',
