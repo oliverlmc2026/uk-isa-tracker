@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useLang } from './i18n'
-import { ROUTES, routeHref } from './useRoute'
+import { ROUTES, navigate, routeHref } from './useRoute'
 import type { Route } from './useRoute'
 
 const svg = (children: ReactNode) => (
@@ -21,7 +21,17 @@ export function Nav({ route }: { route: Route }) {
   return (
     <nav className="tabs" aria-label={m.navLabel}>
       {ROUTES.map((r) => (
-        <a key={r} href={routeHref(r)} aria-current={r === route ? 'page' : undefined}>
+        <a
+          key={r}
+          href={routeHref(r)}
+          aria-current={r === route ? 'page' : undefined}
+          onClick={(e) => {
+            // Leave modified clicks (new tab/window) to the browser.
+            if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return
+            e.preventDefault()
+            navigate(r)
+          }}
+        >
           {ICONS[r]}
           <span>{m.nav[r]}</span>
         </a>
