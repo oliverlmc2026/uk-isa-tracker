@@ -32,3 +32,8 @@ pnpm-debug.log*
 .vite/
 coverage/
 .eslintcache
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+.dev.vars.*
