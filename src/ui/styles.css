@@ -222,6 +222,25 @@ button:hover { background: var(--moss-deep); }
 .account-actions { display: flex; gap: 4px; margin-left: -8px; }
 .accounts li.just-added { box-shadow: inset 4px 0 0 var(--brass); padding-left: 12px; animation: just-added 2.4s ease-out both; }
 @keyframes just-added { from { background: var(--surface); } to { background: transparent; } }
+.toast {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(80px + env(safe-area-inset-bottom));
+  z-index: 20;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  border-left: 4px solid var(--brass);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  font-weight: 600;
+  animation: toast-in 0.2s ease-out;
+}
+@keyframes toast-in { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .toast { animation: none; } }
+
 .added { margin: 0 0 12px; padding: 10px 12px; border-left: 4px solid var(--brass); background: var(--surface); font-weight: 600; }
 
 /* Account type: three one-tap choices instead of a native picker. The radio stays in the DOM, visually hidden. */

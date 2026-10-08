@@ -74,6 +74,12 @@ function Tracker({
   // The add form folds away after a save; the confirmation and row highlight say where the account went.
   const [added, setAdded] = useState<{ id: string; name: string } | null>(null)
   const [addOpen, setAddOpen] = useState(false)
+  const [toast, setToast] = useState<{ key: string; amount: number; account: string } | null>(null)
+  useEffect(() => {
+    if (!toast) return
+    const timer = setTimeout(() => setToast(null), 3000)
+    return () => clearTimeout(timer)
+  }, [toast])
   useEffect(() => setAdded(null), [route])
   const thisYear = currentTaxYear(today)
   // null follows the current Tax Year, so the default view moves on at rollover.
@@ -101,11 +107,14 @@ function Tracker({
   }
   const changeAccount = (id: string, change: { name: string; provider: string }) => setState((s) => ({ ...s, accounts: editAccount(s.accounts, id, change) }))
   const removeAccount = (id: string) => setState((s) => deleteAccount(s, id))
-  const addContribution = (c: Omit<Contribution, 'id'>) =>
+  const addContribution = (c: Omit<Contribution, 'id'>) => {
+    const id = newId()
     setState((s) => ({
       ...s,
-      contributions: [...s.contributions, { ...c, id: newId() }],
+      contributions: [...s.contributions, { ...c, id }],
     }))
+    setToast({ key: id, amount: c.amount, account: state.accounts.find((a) => a.id === c.accountId)?.name ?? '' })
+  }
   const changeContribution = (id: string, change: { amount: number; date: string }) =>
     setState((s) => ({
       ...s,
@@ -129,6 +138,11 @@ function Tracker({
       </header>
 
       <Nav route={route} />
+      {toast && (
+        <p className="toast" role="status" key={toast.key}>
+          {m.contributionAdded(formatPounds(toast.amount), toast.account)}
+        </p>
+      )}
 
       {route === 'settings' ? (
         <>
@@ -583,7 +597,11 @@ function ContributionList({
   const years = [...new Set(state.contributions.map((c) => taxYearOf(c.date)))].sort((a, b) => b - a)
   // A pick whose last Contribution was deleted or moved falls back to all years.
   const filter = yearFilter !== 'all' && years.includes(yearFilter) ? yearFilter : 'all'
-  const sorted = state.contributions.filter((c) => filter === 'all' || taxYearOf(c.date) === filter).sort((a, b) => b.date.localeCompare(a.date))
+  // Newest date first; on the same date the most recently added comes first (reverse, then a stable sort).
+  const sorted = [...state.contributions]
+    .reverse()
+    .filter((c) => filter === 'all' || taxYearOf(c.date) === filter)
+    .sort((a, b) => b.date.localeCompare(a.date))
   if (state.contributions.length === 0) return null
   const names = new Map(state.accounts.map((a) => [a.id, a.name]))
   return (
