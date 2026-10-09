@@ -13,6 +13,7 @@ import { LangContext, MESSAGES, loadLang, loadTheme, saveLang, saveTheme, transl
 import type { Lang, Theme } from './i18n'
 import { ConfirmProvider, useConfirm } from './Confirm'
 import { Nav } from './Nav'
+import { UpdatePrompt } from './UpdatePrompt'
 import { useRoute } from './useRoute'
 
 const todayIso = () => {
@@ -138,6 +139,7 @@ function Tracker({
       </header>
 
       <Nav route={route} />
+      <UpdatePrompt />
       {toast && (
         <p className="toast" role="status" key={toast.key}>
           {m.contributionAdded(formatPounds(toast.amount), toast.account)}
