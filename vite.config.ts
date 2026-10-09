@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      // 'prompt': a new version waits until the user taps Update (see UpdatePrompt).
+      registerType: 'prompt',
       // public/manifest.webmanifest is hand-written and already linked from index.html.
       manifest: false,
       includeAssets: ['*.png', '*.svg'],
