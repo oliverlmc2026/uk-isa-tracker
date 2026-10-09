@@ -135,7 +135,7 @@ function Tracker({
   return (
     <main>
       <header className="masthead">
-        <h1>UK ISA Tracker v2</h1>
+        <h1>UK ISA Tracker v3</h1>
       </header>
 
       <Nav route={route} />
