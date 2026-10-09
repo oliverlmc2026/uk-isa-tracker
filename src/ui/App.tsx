@@ -13,7 +13,7 @@ import { LangContext, MESSAGES, loadLang, loadTheme, saveLang, saveTheme, transl
 import type { Lang, Theme } from './i18n'
 import { ConfirmProvider, useConfirm } from './Confirm'
 import { Nav } from './Nav'
-import { UpdatePrompt } from './UpdatePrompt'
+import { UpdateCheckSection, UpdateProvider } from './UpdatePrompt'
 import { useRoute } from './useRoute'
 
 const todayIso = () => {
@@ -37,7 +37,9 @@ export function App() {
   return (
     <LangContext.Provider value={{ lang, m: MESSAGES[lang] }}>
       <ConfirmProvider>
-        <Tracker lang={lang} onLangChange={setLang} theme={theme} onThemeChange={setTheme} />
+        <UpdateProvider>
+          <Tracker lang={lang} onLangChange={setLang} theme={theme} onThemeChange={setTheme} />
+        </UpdateProvider>
       </ConfirmProvider>
     </LangContext.Provider>
   )
@@ -139,7 +141,6 @@ function Tracker({
       </header>
 
       <Nav route={route} />
-      <UpdatePrompt />
       {toast && (
         <p className="toast" role="status" key={toast.key}>
           {m.contributionAdded(formatPounds(toast.amount), toast.account)}
@@ -169,6 +170,7 @@ function Tracker({
             </div>
           </section>
           {state.accounts.length > 0 && <Settings key={threshold} threshold={threshold} onChange={setThreshold} />}
+          <UpdateCheckSection />
           <Backup state={state} threshold={threshold} today={today} onRestore={restore} />
         </>
       ) : state.accounts.length === 0 ? (
